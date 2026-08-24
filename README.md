@@ -49,7 +49,7 @@ With Swift Package Manager (SPM), add the following to the top-level `dependenci
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/lealhq/leal-swift-sdk", from: "0.0.26"),
+    .package(url: "https://github.com/lealhq/leal-swift-sdk", from: "0.0.27"),
 ]
 ```
 
