@@ -1,0 +1,14 @@
+{
+  "cliVersion": "5.102.0",
+  "generatorName": "fernapi/fern-swift-sdk",
+  "generatorVersion": "0.36.1",
+  "generatorConfig": {
+    "moduleName": "Leal",
+    "clientClassName": "LealClient"
+  },
+  "originGitCommit": "79858519a5b20df3986fde6a58009acebe1a017d",
+  "originGitCommitIsDirty": false,
+  "invokedBy": "ci",
+  "ciProvider": "github",
+  "sdkVersion": "0.0.21"
+}
