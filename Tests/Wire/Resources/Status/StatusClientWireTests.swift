@@ -19,7 +19,18 @@ import Leal
                     "scope": "scope",
                     "window_seconds": 1
                   },
-                  "status": "status"
+                  "status": "status",
+                  "versioning": {
+                    "current": "current",
+                    "deprecated": [
+                      "deprecated"
+                    ],
+                    "policy_url": "policy_url",
+                    "signalling": "signalling",
+                    "supported": [
+                      "supported"
+                    ]
+                  }
                 }
                 """#.utf8
             )
@@ -40,7 +51,18 @@ import Leal
                 scope: "scope",
                 windowSeconds: 1
             ),
-            status: "status"
+            status: "status",
+            versioning: CheckStatusResponseVersioning(
+                current: "current",
+                deprecated: [
+                    "deprecated"
+                ],
+                policyUrl: "policy_url",
+                signalling: "signalling",
+                supported: [
+                    "supported"
+                ]
+            )
         )
         let response = try await client.status.check(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)

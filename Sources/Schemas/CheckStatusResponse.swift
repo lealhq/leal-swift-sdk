@@ -14,6 +14,7 @@ public struct CheckStatusResponse: Codable, Hashable, Sendable {
     public let rateLimit: CheckStatusResponseRateLimit
     /// 'ok' while the API is serving requests
     public let status: String
+    public let versioning: CheckStatusResponseVersioning
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -25,6 +26,7 @@ public struct CheckStatusResponse: Codable, Hashable, Sendable {
         openapiUrl: String,
         rateLimit: CheckStatusResponseRateLimit,
         status: String,
+        versioning: CheckStatusResponseVersioning,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.apiVersion = apiVersion
@@ -34,6 +36,7 @@ public struct CheckStatusResponse: Codable, Hashable, Sendable {
         self.openapiUrl = openapiUrl
         self.rateLimit = rateLimit
         self.status = status
+        self.versioning = versioning
         self.additionalProperties = additionalProperties
     }
 
@@ -46,6 +49,7 @@ public struct CheckStatusResponse: Codable, Hashable, Sendable {
         self.openapiUrl = try container.decode(String.self, forKey: .openapiUrl)
         self.rateLimit = try container.decode(CheckStatusResponseRateLimit.self, forKey: .rateLimit)
         self.status = try container.decode(String.self, forKey: .status)
+        self.versioning = try container.decode(CheckStatusResponseVersioning.self, forKey: .versioning)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -59,6 +63,7 @@ public struct CheckStatusResponse: Codable, Hashable, Sendable {
         try container.encode(self.openapiUrl, forKey: .openapiUrl)
         try container.encode(self.rateLimit, forKey: .rateLimit)
         try container.encode(self.status, forKey: .status)
+        try container.encode(self.versioning, forKey: .versioning)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -70,5 +75,6 @@ public struct CheckStatusResponse: Codable, Hashable, Sendable {
         case openapiUrl = "openapi_url"
         case rateLimit = "rate_limit"
         case status
+        case versioning
     }
 }
