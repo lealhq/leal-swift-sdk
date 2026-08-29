@@ -3,12 +3,16 @@ import Foundation
 public struct UpdateCardsResponse: Codable, Hashable, Sendable {
     /// ISO 8601 timestamp when the card was archived, or null if active
     public let archivedAt: String
+    /// Up to two extra front-of-pass fields
+    public let auxiliaryFields: [String]
     /// Hex colour for the card background (e.g. '#6B4226')
     public let cardColor: String
     /// ISO 8601 creation timestamp
     public let createdAt: String
     /// Number of customer card instances issued
     public let customerCardsCount: Int
+    /// ISO 8601 timestamp when the card expires, or null if it does not expire
+    public let expiresAt: String
     /// Optional header text displayed on the card
     public let headerText: String
     /// Unique card ID
@@ -19,6 +23,10 @@ public struct UpdateCardsResponse: Codable, Hashable, Sendable {
     public let name: String
     /// Number of rewards defined for this card
     public let rewardsCount: Int
+    /// Whether wallet passes show the member name field
+    public let showMemberField: Bool
+    /// Whether wallet passes show the stamps-to-reward field
+    public let showStampsToRewardField: Bool
     /// Hex colour for stamp backgrounds
     public let stampBackgroundColor: String
     /// Hex colour for stamp icons
@@ -42,14 +50,18 @@ public struct UpdateCardsResponse: Codable, Hashable, Sendable {
 
     public init(
         archivedAt: String,
+        auxiliaryFields: [String],
         cardColor: String,
         createdAt: String,
         customerCardsCount: Int,
+        expiresAt: String,
         headerText: String,
         id: Int,
         initialStamps: Int,
         name: String,
         rewardsCount: Int,
+        showMemberField: Bool,
+        showStampsToRewardField: Bool,
         stampBackgroundColor: String,
         stampColor: String,
         stampIcon: String,
@@ -62,14 +74,18 @@ public struct UpdateCardsResponse: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.archivedAt = archivedAt
+        self.auxiliaryFields = auxiliaryFields
         self.cardColor = cardColor
         self.createdAt = createdAt
         self.customerCardsCount = customerCardsCount
+        self.expiresAt = expiresAt
         self.headerText = headerText
         self.id = id
         self.initialStamps = initialStamps
         self.name = name
         self.rewardsCount = rewardsCount
+        self.showMemberField = showMemberField
+        self.showStampsToRewardField = showStampsToRewardField
         self.stampBackgroundColor = stampBackgroundColor
         self.stampColor = stampColor
         self.stampIcon = stampIcon
@@ -85,14 +101,18 @@ public struct UpdateCardsResponse: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.archivedAt = try container.decode(String.self, forKey: .archivedAt)
+        self.auxiliaryFields = try container.decode([String].self, forKey: .auxiliaryFields)
         self.cardColor = try container.decode(String.self, forKey: .cardColor)
         self.createdAt = try container.decode(String.self, forKey: .createdAt)
         self.customerCardsCount = try container.decode(Int.self, forKey: .customerCardsCount)
+        self.expiresAt = try container.decode(String.self, forKey: .expiresAt)
         self.headerText = try container.decode(String.self, forKey: .headerText)
         self.id = try container.decode(Int.self, forKey: .id)
         self.initialStamps = try container.decode(Int.self, forKey: .initialStamps)
         self.name = try container.decode(String.self, forKey: .name)
         self.rewardsCount = try container.decode(Int.self, forKey: .rewardsCount)
+        self.showMemberField = try container.decode(Bool.self, forKey: .showMemberField)
+        self.showStampsToRewardField = try container.decode(Bool.self, forKey: .showStampsToRewardField)
         self.stampBackgroundColor = try container.decode(String.self, forKey: .stampBackgroundColor)
         self.stampColor = try container.decode(String.self, forKey: .stampColor)
         self.stampIcon = try container.decode(String.self, forKey: .stampIcon)
@@ -109,14 +129,18 @@ public struct UpdateCardsResponse: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.archivedAt, forKey: .archivedAt)
+        try container.encode(self.auxiliaryFields, forKey: .auxiliaryFields)
         try container.encode(self.cardColor, forKey: .cardColor)
         try container.encode(self.createdAt, forKey: .createdAt)
         try container.encode(self.customerCardsCount, forKey: .customerCardsCount)
+        try container.encode(self.expiresAt, forKey: .expiresAt)
         try container.encode(self.headerText, forKey: .headerText)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.initialStamps, forKey: .initialStamps)
         try container.encode(self.name, forKey: .name)
         try container.encode(self.rewardsCount, forKey: .rewardsCount)
+        try container.encode(self.showMemberField, forKey: .showMemberField)
+        try container.encode(self.showStampsToRewardField, forKey: .showStampsToRewardField)
         try container.encode(self.stampBackgroundColor, forKey: .stampBackgroundColor)
         try container.encode(self.stampColor, forKey: .stampColor)
         try container.encode(self.stampIcon, forKey: .stampIcon)
@@ -131,14 +155,18 @@ public struct UpdateCardsResponse: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case archivedAt = "archived_at"
+        case auxiliaryFields = "auxiliary_fields"
         case cardColor = "card_color"
         case createdAt = "created_at"
         case customerCardsCount = "customer_cards_count"
+        case expiresAt = "expires_at"
         case headerText = "header_text"
         case id
         case initialStamps = "initial_stamps"
         case name
         case rewardsCount = "rewards_count"
+        case showMemberField = "show_member_field"
+        case showStampsToRewardField = "show_stamps_to_reward_field"
         case stampBackgroundColor = "stamp_background_color"
         case stampColor = "stamp_color"
         case stampIcon = "stamp_icon"

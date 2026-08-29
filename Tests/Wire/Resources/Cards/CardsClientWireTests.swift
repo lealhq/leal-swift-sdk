@@ -11,14 +11,20 @@ import Leal
                 [
                   {
                     "archived_at": "archived_at",
+                    "auxiliary_fields": [
+                      "auxiliary_fields"
+                    ],
                     "card_color": "card_color",
                     "created_at": "created_at",
                     "customer_cards_count": 1,
+                    "expires_at": "expires_at",
                     "header_text": "header_text",
                     "id": 1,
                     "initial_stamps": 1,
                     "name": "name",
                     "rewards_count": 1,
+                    "show_member_field": true,
+                    "show_stamps_to_reward_field": true,
                     "stamp_background_color": "stamp_background_color",
                     "stamp_color": "stamp_color",
                     "stamp_icon": "stamp_icon",
@@ -41,14 +47,20 @@ import Leal
         let expectedResponse = [
             ListCardsResponseItem(
                 archivedAt: "archived_at",
+                auxiliaryFields: [
+                    "auxiliary_fields"
+                ],
                 cardColor: "card_color",
                 createdAt: "created_at",
                 customerCardsCount: 1,
+                expiresAt: "expires_at",
                 headerText: "header_text",
                 id: 1,
                 initialStamps: 1,
                 name: "name",
                 rewardsCount: 1,
+                showMemberField: true,
+                showStampsToRewardField: true,
                 stampBackgroundColor: "stamp_background_color",
                 stampColor: "stamp_color",
                 stampIcon: "stamp_icon",
@@ -74,14 +86,20 @@ import Leal
                 #"""
                 {
                   "archived_at": "archived_at",
+                  "auxiliary_fields": [
+                    "auxiliary_fields"
+                  ],
                   "card_color": "card_color",
                   "created_at": "created_at",
                   "customer_cards_count": 1,
+                  "expires_at": "expires_at",
                   "header_text": "header_text",
                   "id": 1,
                   "initial_stamps": 1,
                   "name": "name",
                   "rewards_count": 1,
+                  "show_member_field": true,
+                  "show_stamps_to_reward_field": true,
                   "stamp_background_color": "stamp_background_color",
                   "stamp_color": "stamp_color",
                   "stamp_icon": "stamp_icon",
@@ -102,14 +120,20 @@ import Leal
         )
         let expectedResponse = CreateCardsResponse(
             archivedAt: "archived_at",
+            auxiliaryFields: [
+                "auxiliary_fields"
+            ],
             cardColor: "card_color",
             createdAt: "created_at",
             customerCardsCount: 1,
+            expiresAt: "expires_at",
             headerText: "header_text",
             id: 1,
             initialStamps: 1,
             name: "name",
             rewardsCount: 1,
+            showMemberField: true,
+            showStampsToRewardField: true,
             stampBackgroundColor: "stamp_background_color",
             stampColor: "stamp_color",
             stampIcon: "stamp_icon",
@@ -137,14 +161,20 @@ import Leal
                 #"""
                 {
                   "archived_at": "archived_at",
+                  "auxiliary_fields": [
+                    "auxiliary_fields"
+                  ],
                   "card_color": "card_color",
                   "created_at": "created_at",
                   "customer_cards_count": 1,
+                  "expires_at": "expires_at",
                   "header_text": "header_text",
                   "id": 1,
                   "initial_stamps": 1,
                   "name": "name",
                   "rewards_count": 1,
+                  "show_member_field": true,
+                  "show_stamps_to_reward_field": true,
                   "stamp_background_color": "stamp_background_color",
                   "stamp_color": "stamp_color",
                   "stamp_icon": "stamp_icon",
@@ -165,14 +195,20 @@ import Leal
         )
         let expectedResponse = GetCardsResponse(
             archivedAt: "archived_at",
+            auxiliaryFields: [
+                "auxiliary_fields"
+            ],
             cardColor: "card_color",
             createdAt: "created_at",
             customerCardsCount: 1,
+            expiresAt: "expires_at",
             headerText: "header_text",
             id: 1,
             initialStamps: 1,
             name: "name",
             rewardsCount: 1,
+            showMemberField: true,
+            showStampsToRewardField: true,
             stampBackgroundColor: "stamp_background_color",
             stampColor: "stamp_color",
             stampIcon: "stamp_icon",
@@ -198,14 +234,20 @@ import Leal
                 #"""
                 {
                   "archived_at": "archived_at",
+                  "auxiliary_fields": [
+                    "auxiliary_fields"
+                  ],
                   "card_color": "card_color",
                   "created_at": "created_at",
                   "customer_cards_count": 1,
+                  "expires_at": "expires_at",
                   "header_text": "header_text",
                   "id": 1,
                   "initial_stamps": 1,
                   "name": "name",
                   "rewards_count": 1,
+                  "show_member_field": true,
+                  "show_stamps_to_reward_field": true,
                   "stamp_background_color": "stamp_background_color",
                   "stamp_color": "stamp_color",
                   "stamp_icon": "stamp_icon",
@@ -226,14 +268,20 @@ import Leal
         )
         let expectedResponse = UpdateCardsResponse(
             archivedAt: "archived_at",
+            auxiliaryFields: [
+                "auxiliary_fields"
+            ],
             cardColor: "card_color",
             createdAt: "created_at",
             customerCardsCount: 1,
+            expiresAt: "expires_at",
             headerText: "header_text",
             id: 1,
             initialStamps: 1,
             name: "name",
             rewardsCount: 1,
+            showMemberField: true,
+            showStampsToRewardField: true,
             stampBackgroundColor: "stamp_background_color",
             stampColor: "stamp_color",
             stampIcon: "stamp_icon",
