@@ -37,6 +37,8 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
     public let stampsRequired: Int
     /// Hex colour for the strip (when strip_type is 'color')
     public let stripColor: String
+    /// Opacity (0–100) of the strip background over the card colour, for a colour, an uploaded image or a preset alike. 100 renders the colour or image exactly as supplied; lower values let the card colour show through
+    public let stripOpacity: Double
     /// Preset strip image identifier (when strip_type is 'preset')
     public let stripPreset: String
     /// Strip image type: 'color', 'image', or 'preset'
@@ -67,6 +69,7 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
         stampIcon: String,
         stampsRequired: Int,
         stripColor: String,
+        stripOpacity: Double,
         stripPreset: String,
         stripType: String,
         textColor: String,
@@ -91,6 +94,7 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
         self.stampIcon = stampIcon
         self.stampsRequired = stampsRequired
         self.stripColor = stripColor
+        self.stripOpacity = stripOpacity
         self.stripPreset = stripPreset
         self.stripType = stripType
         self.textColor = textColor
@@ -118,6 +122,7 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
         self.stampIcon = try container.decode(String.self, forKey: .stampIcon)
         self.stampsRequired = try container.decode(Int.self, forKey: .stampsRequired)
         self.stripColor = try container.decode(String.self, forKey: .stripColor)
+        self.stripOpacity = try container.decode(Double.self, forKey: .stripOpacity)
         self.stripPreset = try container.decode(String.self, forKey: .stripPreset)
         self.stripType = try container.decode(String.self, forKey: .stripType)
         self.textColor = try container.decode(String.self, forKey: .textColor)
@@ -146,6 +151,7 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
         try container.encode(self.stampIcon, forKey: .stampIcon)
         try container.encode(self.stampsRequired, forKey: .stampsRequired)
         try container.encode(self.stripColor, forKey: .stripColor)
+        try container.encode(self.stripOpacity, forKey: .stripOpacity)
         try container.encode(self.stripPreset, forKey: .stripPreset)
         try container.encode(self.stripType, forKey: .stripType)
         try container.encode(self.textColor, forKey: .textColor)
@@ -172,6 +178,7 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
         case stampIcon = "stamp_icon"
         case stampsRequired = "stamps_required"
         case stripColor = "strip_color"
+        case stripOpacity = "strip_opacity"
         case stripPreset = "strip_preset"
         case stripType = "strip_type"
         case textColor = "text_color"

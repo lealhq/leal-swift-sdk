@@ -27,6 +27,8 @@ public struct UpdateCardsRequestCard: Codable, Hashable, Sendable {
     public let stampsRequired: Int?
     /// Hex colour for the strip
     public let stripColor: String?
+    /// Opacity (0–100) of the strip background over the card colour. 100 renders the colour or image exactly as supplied
+    public let stripOpacity: Double?
     /// Preset strip image identifier
     public let stripPreset: String?
     /// Strip image type
@@ -50,6 +52,7 @@ public struct UpdateCardsRequestCard: Codable, Hashable, Sendable {
         stampIcon: String? = nil,
         stampsRequired: Int? = nil,
         stripColor: String? = nil,
+        stripOpacity: Double? = nil,
         stripPreset: String? = nil,
         stripType: String? = nil,
         textColor: String? = nil,
@@ -68,6 +71,7 @@ public struct UpdateCardsRequestCard: Codable, Hashable, Sendable {
         self.stampIcon = stampIcon
         self.stampsRequired = stampsRequired
         self.stripColor = stripColor
+        self.stripOpacity = stripOpacity
         self.stripPreset = stripPreset
         self.stripType = stripType
         self.textColor = textColor
@@ -89,6 +93,7 @@ public struct UpdateCardsRequestCard: Codable, Hashable, Sendable {
         self.stampIcon = try container.decodeIfPresent(String.self, forKey: .stampIcon)
         self.stampsRequired = try container.decodeIfPresent(Int.self, forKey: .stampsRequired)
         self.stripColor = try container.decodeIfPresent(String.self, forKey: .stripColor)
+        self.stripOpacity = try container.decodeIfPresent(Double.self, forKey: .stripOpacity)
         self.stripPreset = try container.decodeIfPresent(String.self, forKey: .stripPreset)
         self.stripType = try container.decodeIfPresent(String.self, forKey: .stripType)
         self.textColor = try container.decodeIfPresent(String.self, forKey: .textColor)
@@ -111,6 +116,7 @@ public struct UpdateCardsRequestCard: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.stampIcon, forKey: .stampIcon)
         try container.encodeIfPresent(self.stampsRequired, forKey: .stampsRequired)
         try container.encodeIfPresent(self.stripColor, forKey: .stripColor)
+        try container.encodeIfPresent(self.stripOpacity, forKey: .stripOpacity)
         try container.encodeIfPresent(self.stripPreset, forKey: .stripPreset)
         try container.encodeIfPresent(self.stripType, forKey: .stripType)
         try container.encodeIfPresent(self.textColor, forKey: .textColor)
@@ -131,6 +137,7 @@ public struct UpdateCardsRequestCard: Codable, Hashable, Sendable {
         case stampIcon = "stamp_icon"
         case stampsRequired = "stamps_required"
         case stripColor = "strip_color"
+        case stripOpacity = "strip_opacity"
         case stripPreset = "strip_preset"
         case stripType = "strip_type"
         case textColor = "text_color"
