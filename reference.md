@@ -2611,6 +2611,592 @@ try await main()
 </dl>
 </details>
 
+## Webhook Subscriptions
+<details><summary><code>client.webhookSubscriptions.<a href="/Sources/Resources/WebhookSubscriptions/WebhookSubscriptionsClient.swift">getApiV1AccountsAccountIdWebhookSubscriptions</a>(accountId: String, event: String?, requestOptions: RequestOptions?) -> [GetApiV1AccountsAccountIdWebhookSubscriptionsResponseItem]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns every webhook subscription for the store, oldest first. Signing secrets are not included; fetch a single subscription to read its secret.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Leal
+
+private func main() async throws {
+    let client = LealClient(token: "<token>")
+
+    _ = try await client.webhookSubscriptions.getApiV1AccountsAccountIdWebhookSubscriptions(accountId: "1")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**accountId:** `String` — Store (account) ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event:** `String?` — Only return subscriptions that list this event (or `*`)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.webhookSubscriptions.<a href="/Sources/Resources/WebhookSubscriptions/WebhookSubscriptionsClient.swift">postApiV1AccountsAccountIdWebhookSubscriptions</a>(accountId: String, request: Requests.PostApiV1AccountsAccountIdWebhookSubscriptionsRequest, requestOptions: RequestOptions?) -> PostApiV1AccountsAccountIdWebhookSubscriptionsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Subscribes a URL to one or more events. The response includes the signing `secret`; store it to
+verify deliveries. The URL must be publicly reachable over https.
+
+Events: `customer.created`, `customer.updated`, `customer_card.created`, `stamp.earned`, `stamp.removed`, `reward.unlocked`, `reward.redeemed`, or `*` for all of them.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Leal
+
+private func main() async throws {
+    let client = LealClient(token: "<token>")
+
+    _ = try await client.webhookSubscriptions.postApiV1AccountsAccountIdWebhookSubscriptions(
+        accountId: "1",
+        request: .init(targetUrl: "target_url")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**accountId:** `String` — Store (account) ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.PostApiV1AccountsAccountIdWebhookSubscriptionsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.webhookSubscriptions.<a href="/Sources/Resources/WebhookSubscriptions/WebhookSubscriptionsClient.swift">getApiV1AccountsAccountIdWebhookSubscriptionsId</a>(accountId: String, id: String, requestOptions: RequestOptions?) -> GetApiV1AccountsAccountIdWebhookSubscriptionsIdResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a single subscription, including its signing secret and the result of the most recent delivery.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Leal
+
+private func main() async throws {
+    let client = LealClient(token: "<token>")
+
+    _ = try await client.webhookSubscriptions.getApiV1AccountsAccountIdWebhookSubscriptionsId(
+        accountId: "1",
+        id: "1"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**accountId:** `String` — Store (account) ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `String` — Webhook subscription ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.webhookSubscriptions.<a href="/Sources/Resources/WebhookSubscriptions/WebhookSubscriptionsClient.swift">deleteApiV1AccountsAccountIdWebhookSubscriptionsId</a>(accountId: String, id: String, requestOptions: RequestOptions?) -> Void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Stops deliveries and deletes the subscription. This cannot be undone.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Leal
+
+private func main() async throws {
+    let client = LealClient(token: "<token>")
+
+    _ = try await client.webhookSubscriptions.deleteApiV1AccountsAccountIdWebhookSubscriptionsId(
+        accountId: "1",
+        id: "1"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**accountId:** `String` — Store (account) ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `String` — Webhook subscription ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.webhookSubscriptions.<a href="/Sources/Resources/WebhookSubscriptions/WebhookSubscriptionsClient.swift">patchApiV1AccountsAccountIdWebhookSubscriptionsId</a>(accountId: String, id: String, request: Requests.PatchApiV1AccountsAccountIdWebhookSubscriptionsIdRequest, requestOptions: RequestOptions?) -> PatchApiV1AccountsAccountIdWebhookSubscriptionsIdResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Changes the URL, events, label or payload format, or turns the subscription off and on. Re-enabling a subscription that was disabled for failing clears its failure state.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Leal
+
+private func main() async throws {
+    let client = LealClient(token: "<token>")
+
+    _ = try await client.webhookSubscriptions.patchApiV1AccountsAccountIdWebhookSubscriptionsId(
+        accountId: "1",
+        id: "1",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**accountId:** `String` — Store (account) ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `String` — Webhook subscription ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.PatchApiV1AccountsAccountIdWebhookSubscriptionsIdRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.webhookSubscriptions.<a href="/Sources/Resources/WebhookSubscriptions/WebhookSubscriptionsClient.swift">postApiV1AccountsAccountIdWebhookSubscriptionsIdRotateSecret</a>(accountId: String, id: String, requestOptions: RequestOptions?) -> PostApiV1AccountsAccountIdWebhookSubscriptionsIdRotateSecretResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replaces the subscription's signing secret. Deliveries are signed with the new secret straight away, so update your receiver at the same time.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Leal
+
+private func main() async throws {
+    let client = LealClient(token: "<token>")
+
+    _ = try await client.webhookSubscriptions.postApiV1AccountsAccountIdWebhookSubscriptionsIdRotateSecret(
+        accountId: "1",
+        id: "1"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**accountId:** `String` — Store (account) ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `String` — Webhook subscription ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.webhookSubscriptions.<a href="/Sources/Resources/WebhookSubscriptions/WebhookSubscriptionsClient.swift">postApiV1AccountsAccountIdWebhookSubscriptionsIdTest</a>(accountId: String, id: String, requestOptions: RequestOptions?) -> PostApiV1AccountsAccountIdWebhookSubscriptionsIdTestResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Immediately sends a signed `webhook.test` event to the subscription's URL and reports what
+happened, so you can check your endpoint and signature verification without waiting for real
+activity. Test events are not retried and do not count towards disabling the subscription.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Leal
+
+private func main() async throws {
+    let client = LealClient(token: "<token>")
+
+    _ = try await client.webhookSubscriptions.postApiV1AccountsAccountIdWebhookSubscriptionsIdTest(
+        accountId: "1",
+        id: "1"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**accountId:** `String` — Store (account) ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `String` — Webhook subscription ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Status
 <details><summary><code>client.status.<a href="/Sources/Resources/Status/StatusClient.swift">check</a>(requestOptions: RequestOptions?) -> CheckStatusResponse</code></summary>
 <dl>

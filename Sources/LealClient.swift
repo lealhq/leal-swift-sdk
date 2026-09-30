@@ -9,6 +9,7 @@ public final class LealClient: Sendable {
     public let locations: LocationsClient
     public let posters: PostersClient
     public let rewards: RewardsClient
+    public let webhookSubscriptions: WebhookSubscriptionsClient
     public let status: StatusClient
     private let httpClient: HTTPClient
 
@@ -95,6 +96,7 @@ public final class LealClient: Sendable {
         self.locations = LocationsClient(config: config)
         self.posters = PostersClient(config: config)
         self.rewards = RewardsClient(config: config)
+        self.webhookSubscriptions = WebhookSubscriptionsClient(config: config)
         self.status = StatusClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
