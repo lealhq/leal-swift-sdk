@@ -13,6 +13,14 @@ public struct CreateCardsRequestCard: Codable, Hashable, Sendable {
     public let initialStamps: Int?
     /// Card name (e.g. 'Coffee Loyalty Card')
     public let name: String
+    /// What the wallet pass QR holds. Defaults to 'link' for new cards
+    public let qrStyle: CreateCardsRequestCardQrStyle?
+    /// Stamps the invited friend gets on their first stamped visit (>= 0 and < stamps_required, default 1)
+    public let refereeStamps: Double?
+    /// Let customers invite friends from the back of their pass (default false)
+    public let referralsEnabled: Bool?
+    /// Stamps the inviting customer gets when the friend's first visit is stamped (>= 0 and < stamps_required, default 1)
+    public let referrerStamps: Double?
     /// Whether wallet passes show the member name field
     public let showMemberField: Bool?
     /// Whether wallet passes show the stamps-to-reward field
@@ -45,6 +53,10 @@ public struct CreateCardsRequestCard: Codable, Hashable, Sendable {
         headerText: String? = nil,
         initialStamps: Int? = nil,
         name: String,
+        qrStyle: CreateCardsRequestCardQrStyle? = nil,
+        refereeStamps: Double? = nil,
+        referralsEnabled: Bool? = nil,
+        referrerStamps: Double? = nil,
         showMemberField: Bool? = nil,
         showStampsToRewardField: Bool? = nil,
         stampBackgroundColor: String? = nil,
@@ -64,6 +76,10 @@ public struct CreateCardsRequestCard: Codable, Hashable, Sendable {
         self.headerText = headerText
         self.initialStamps = initialStamps
         self.name = name
+        self.qrStyle = qrStyle
+        self.refereeStamps = refereeStamps
+        self.referralsEnabled = referralsEnabled
+        self.referrerStamps = referrerStamps
         self.showMemberField = showMemberField
         self.showStampsToRewardField = showStampsToRewardField
         self.stampBackgroundColor = stampBackgroundColor
@@ -86,6 +102,10 @@ public struct CreateCardsRequestCard: Codable, Hashable, Sendable {
         self.headerText = try container.decodeIfPresent(String.self, forKey: .headerText)
         self.initialStamps = try container.decodeIfPresent(Int.self, forKey: .initialStamps)
         self.name = try container.decode(String.self, forKey: .name)
+        self.qrStyle = try container.decodeIfPresent(CreateCardsRequestCardQrStyle.self, forKey: .qrStyle)
+        self.refereeStamps = try container.decodeIfPresent(Double.self, forKey: .refereeStamps)
+        self.referralsEnabled = try container.decodeIfPresent(Bool.self, forKey: .referralsEnabled)
+        self.referrerStamps = try container.decodeIfPresent(Double.self, forKey: .referrerStamps)
         self.showMemberField = try container.decodeIfPresent(Bool.self, forKey: .showMemberField)
         self.showStampsToRewardField = try container.decodeIfPresent(Bool.self, forKey: .showStampsToRewardField)
         self.stampBackgroundColor = try container.decodeIfPresent(String.self, forKey: .stampBackgroundColor)
@@ -109,6 +129,10 @@ public struct CreateCardsRequestCard: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.headerText, forKey: .headerText)
         try container.encodeIfPresent(self.initialStamps, forKey: .initialStamps)
         try container.encode(self.name, forKey: .name)
+        try container.encodeIfPresent(self.qrStyle, forKey: .qrStyle)
+        try container.encodeIfPresent(self.refereeStamps, forKey: .refereeStamps)
+        try container.encodeIfPresent(self.referralsEnabled, forKey: .referralsEnabled)
+        try container.encodeIfPresent(self.referrerStamps, forKey: .referrerStamps)
         try container.encodeIfPresent(self.showMemberField, forKey: .showMemberField)
         try container.encodeIfPresent(self.showStampsToRewardField, forKey: .showStampsToRewardField)
         try container.encodeIfPresent(self.stampBackgroundColor, forKey: .stampBackgroundColor)
@@ -130,6 +154,10 @@ public struct CreateCardsRequestCard: Codable, Hashable, Sendable {
         case headerText = "header_text"
         case initialStamps = "initial_stamps"
         case name
+        case qrStyle = "qr_style"
+        case refereeStamps = "referee_stamps"
+        case referralsEnabled = "referrals_enabled"
+        case referrerStamps = "referrer_stamps"
         case showMemberField = "show_member_field"
         case showStampsToRewardField = "show_stamps_to_reward_field"
         case stampBackgroundColor = "stamp_background_color"

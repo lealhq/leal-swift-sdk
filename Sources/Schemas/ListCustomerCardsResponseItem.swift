@@ -19,6 +19,8 @@ public struct ListCustomerCardsResponseItem: Codable, Hashable, Sendable {
     public let passInstalled: Bool
     /// Completion towards the next reward, 0 to 100
     public let progressPercentage: Double
+    /// The customer's invite link while the card has referrals on (null otherwise). Safe to share: it names the customer as referrer and can't be used to stamp or redeem
+    public let referralUrl: String
     /// Stamps collected so far
     public let stampsCount: Int
     /// Stamps still needed to complete the card
@@ -27,7 +29,7 @@ public struct ListCustomerCardsResponseItem: Codable, Hashable, Sendable {
     public let status: String
     /// ISO 8601 last-update timestamp
     public let updatedAt: String
-    /// Public identifier used in wallet pass URLs
+    /// The card code: what the store scanner reads from the wallet pass QR and what staff can type in. Treat it like a membership number; it can be used to stamp and redeem
     public let uuid: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -42,6 +44,7 @@ public struct ListCustomerCardsResponseItem: Codable, Hashable, Sendable {
         issuedAt: String,
         passInstalled: Bool,
         progressPercentage: Double,
+        referralUrl: String,
         stampsCount: Int,
         stampsRemaining: Int,
         status: String,
@@ -58,6 +61,7 @@ public struct ListCustomerCardsResponseItem: Codable, Hashable, Sendable {
         self.issuedAt = issuedAt
         self.passInstalled = passInstalled
         self.progressPercentage = progressPercentage
+        self.referralUrl = referralUrl
         self.stampsCount = stampsCount
         self.stampsRemaining = stampsRemaining
         self.status = status
@@ -77,6 +81,7 @@ public struct ListCustomerCardsResponseItem: Codable, Hashable, Sendable {
         self.issuedAt = try container.decode(String.self, forKey: .issuedAt)
         self.passInstalled = try container.decode(Bool.self, forKey: .passInstalled)
         self.progressPercentage = try container.decode(Double.self, forKey: .progressPercentage)
+        self.referralUrl = try container.decode(String.self, forKey: .referralUrl)
         self.stampsCount = try container.decode(Int.self, forKey: .stampsCount)
         self.stampsRemaining = try container.decode(Int.self, forKey: .stampsRemaining)
         self.status = try container.decode(String.self, forKey: .status)
@@ -97,6 +102,7 @@ public struct ListCustomerCardsResponseItem: Codable, Hashable, Sendable {
         try container.encode(self.issuedAt, forKey: .issuedAt)
         try container.encode(self.passInstalled, forKey: .passInstalled)
         try container.encode(self.progressPercentage, forKey: .progressPercentage)
+        try container.encode(self.referralUrl, forKey: .referralUrl)
         try container.encode(self.stampsCount, forKey: .stampsCount)
         try container.encode(self.stampsRemaining, forKey: .stampsRemaining)
         try container.encode(self.status, forKey: .status)
@@ -115,6 +121,7 @@ public struct ListCustomerCardsResponseItem: Codable, Hashable, Sendable {
         case issuedAt = "issued_at"
         case passInstalled = "pass_installed"
         case progressPercentage = "progress_percentage"
+        case referralUrl = "referral_url"
         case stampsCount = "stamps_count"
         case stampsRemaining = "stamps_remaining"
         case status

@@ -21,6 +21,14 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
     public let initialStamps: Int
     /// Card name (e.g. 'Coffee Loyalty Card')
     public let name: String
+    /// What the wallet pass QR holds: 'link' (the customer's invite link with the card code after the #, readable by the Leal scanner and by `search`) or 'code' (the bare card code). Cards created before referrals use 'code'
+    public let qrStyle: String
+    /// Stamps the invited friend gets when the referral pays out
+    public let refereeStamps: Double
+    /// Whether customers can invite friends from the back of their pass. A referral pays out when the store first stamps the friend's card for a visit (a scan, or the API/POS), never for signing up
+    public let referralsEnabled: Bool
+    /// Stamps the inviting customer gets when the referral pays out
+    public let referrerStamps: Double
     /// Number of rewards defined for this card
     public let rewardsCount: Int
     /// Whether wallet passes show the member name field
@@ -61,6 +69,10 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
         id: Int,
         initialStamps: Int,
         name: String,
+        qrStyle: String,
+        refereeStamps: Double,
+        referralsEnabled: Bool,
+        referrerStamps: Double,
         rewardsCount: Int,
         showMemberField: Bool,
         showStampsToRewardField: Bool,
@@ -86,6 +98,10 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
         self.id = id
         self.initialStamps = initialStamps
         self.name = name
+        self.qrStyle = qrStyle
+        self.refereeStamps = refereeStamps
+        self.referralsEnabled = referralsEnabled
+        self.referrerStamps = referrerStamps
         self.rewardsCount = rewardsCount
         self.showMemberField = showMemberField
         self.showStampsToRewardField = showStampsToRewardField
@@ -114,6 +130,10 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
         self.id = try container.decode(Int.self, forKey: .id)
         self.initialStamps = try container.decode(Int.self, forKey: .initialStamps)
         self.name = try container.decode(String.self, forKey: .name)
+        self.qrStyle = try container.decode(String.self, forKey: .qrStyle)
+        self.refereeStamps = try container.decode(Double.self, forKey: .refereeStamps)
+        self.referralsEnabled = try container.decode(Bool.self, forKey: .referralsEnabled)
+        self.referrerStamps = try container.decode(Double.self, forKey: .referrerStamps)
         self.rewardsCount = try container.decode(Int.self, forKey: .rewardsCount)
         self.showMemberField = try container.decode(Bool.self, forKey: .showMemberField)
         self.showStampsToRewardField = try container.decode(Bool.self, forKey: .showStampsToRewardField)
@@ -143,6 +163,10 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
         try container.encode(self.id, forKey: .id)
         try container.encode(self.initialStamps, forKey: .initialStamps)
         try container.encode(self.name, forKey: .name)
+        try container.encode(self.qrStyle, forKey: .qrStyle)
+        try container.encode(self.refereeStamps, forKey: .refereeStamps)
+        try container.encode(self.referralsEnabled, forKey: .referralsEnabled)
+        try container.encode(self.referrerStamps, forKey: .referrerStamps)
         try container.encode(self.rewardsCount, forKey: .rewardsCount)
         try container.encode(self.showMemberField, forKey: .showMemberField)
         try container.encode(self.showStampsToRewardField, forKey: .showStampsToRewardField)
@@ -170,6 +194,10 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
         case id
         case initialStamps = "initial_stamps"
         case name
+        case qrStyle = "qr_style"
+        case refereeStamps = "referee_stamps"
+        case referralsEnabled = "referrals_enabled"
+        case referrerStamps = "referrer_stamps"
         case rewardsCount = "rewards_count"
         case showMemberField = "show_member_field"
         case showStampsToRewardField = "show_stamps_to_reward_field"

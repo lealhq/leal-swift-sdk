@@ -40,7 +40,7 @@ public final class WebhookSubscriptionsClient: Sendable {
     /// Subscribes a URL to one or more events. The response includes the signing `secret`; store it to
     /// verify deliveries. The URL must be publicly reachable over https.
     ///
-    /// Events: `customer.created`, `customer.updated`, `customer_card.created`, `stamp.earned`, `stamp.removed`, `reward.unlocked`, `reward.redeemed`, or `*` for all of them.
+    /// Events: `customer.created`, `customer.updated`, `customer_card.created`, `stamp.earned`, `stamp.removed`, `reward.unlocked`, `reward.redeemed`, `referral.created`, `referral.rewarded`, or `*` for all of them.
     ///
     /// ```swift
     /// import Foundation
