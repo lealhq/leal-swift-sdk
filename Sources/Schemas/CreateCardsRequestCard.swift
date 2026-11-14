@@ -1,12 +1,18 @@
 import Foundation
 
 public struct CreateCardsRequestCard: Codable, Hashable, Sendable {
+    /// Apple Wallet layout. 'poster' is iOS 27's full-bleed layout; older iPhones show the store card. Defaults to 'store_card'
+    public let applePassStyle: CreateCardsRequestCardApplePassStyle?
     /// Up to two extra front-of-pass fields. Blank values are ignored.
     public let auxiliaryFields: [String]?
     /// Hex colour for the card background (e.g. '#6B4226')
     public let cardColor: String?
     /// Card expiry timestamp (ISO 8601)
     public let expiresAt: String?
+    /// Up to two buttons, shown as Featured Actions under the iOS 27 poster and as links in Google Wallet. Send an empty array to remove them.
+    public let featuredActions: [String]?
+    /// How the logo sits on Google Wallet. Defaults to 'round'
+    public let googleLogoStyle: CreateCardsRequestCardGoogleLogoStyle?
     /// Optional header text displayed on the card
     public let headerText: String?
     /// Number of stamps pre-filled on new customer cards (must be >= 0 and < stamps_required)
@@ -47,9 +53,12 @@ public struct CreateCardsRequestCard: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        applePassStyle: CreateCardsRequestCardApplePassStyle? = nil,
         auxiliaryFields: [String]? = nil,
         cardColor: String? = nil,
         expiresAt: String? = nil,
+        featuredActions: [String]? = nil,
+        googleLogoStyle: CreateCardsRequestCardGoogleLogoStyle? = nil,
         headerText: String? = nil,
         initialStamps: Int? = nil,
         name: String,
@@ -70,9 +79,12 @@ public struct CreateCardsRequestCard: Codable, Hashable, Sendable {
         textColor: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.applePassStyle = applePassStyle
         self.auxiliaryFields = auxiliaryFields
         self.cardColor = cardColor
         self.expiresAt = expiresAt
+        self.featuredActions = featuredActions
+        self.googleLogoStyle = googleLogoStyle
         self.headerText = headerText
         self.initialStamps = initialStamps
         self.name = name
@@ -96,9 +108,12 @@ public struct CreateCardsRequestCard: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.applePassStyle = try container.decodeIfPresent(CreateCardsRequestCardApplePassStyle.self, forKey: .applePassStyle)
         self.auxiliaryFields = try container.decodeIfPresent([String].self, forKey: .auxiliaryFields)
         self.cardColor = try container.decodeIfPresent(String.self, forKey: .cardColor)
         self.expiresAt = try container.decodeIfPresent(String.self, forKey: .expiresAt)
+        self.featuredActions = try container.decodeIfPresent([String].self, forKey: .featuredActions)
+        self.googleLogoStyle = try container.decodeIfPresent(CreateCardsRequestCardGoogleLogoStyle.self, forKey: .googleLogoStyle)
         self.headerText = try container.decodeIfPresent(String.self, forKey: .headerText)
         self.initialStamps = try container.decodeIfPresent(Int.self, forKey: .initialStamps)
         self.name = try container.decode(String.self, forKey: .name)
@@ -123,9 +138,12 @@ public struct CreateCardsRequestCard: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encodeIfPresent(self.applePassStyle, forKey: .applePassStyle)
         try container.encodeIfPresent(self.auxiliaryFields, forKey: .auxiliaryFields)
         try container.encodeIfPresent(self.cardColor, forKey: .cardColor)
         try container.encodeIfPresent(self.expiresAt, forKey: .expiresAt)
+        try container.encodeIfPresent(self.featuredActions, forKey: .featuredActions)
+        try container.encodeIfPresent(self.googleLogoStyle, forKey: .googleLogoStyle)
         try container.encodeIfPresent(self.headerText, forKey: .headerText)
         try container.encodeIfPresent(self.initialStamps, forKey: .initialStamps)
         try container.encode(self.name, forKey: .name)
@@ -148,9 +166,12 @@ public struct CreateCardsRequestCard: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case applePassStyle = "apple_pass_style"
         case auxiliaryFields = "auxiliary_fields"
         case cardColor = "card_color"
         case expiresAt = "expires_at"
+        case featuredActions = "featured_actions"
+        case googleLogoStyle = "google_logo_style"
         case headerText = "header_text"
         case initialStamps = "initial_stamps"
         case name

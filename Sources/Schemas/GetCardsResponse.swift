@@ -1,6 +1,8 @@
 import Foundation
 
 public struct GetCardsResponse: Codable, Hashable, Sendable {
+    /// Apple Wallet layout: 'store_card' (the classic layout) or 'poster' (iOS 27 full-bleed artwork; iPhones on iOS 26 or earlier show the store card)
+    public let applePassStyle: String
     /// ISO 8601 timestamp when the card was archived, or null if active
     public let archivedAt: String
     /// Up to two extra front-of-pass fields
@@ -13,6 +15,11 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
     public let customerCardsCount: Int
     /// ISO 8601 timestamp when the card expires, or null if it does not expire
     public let expiresAt: String
+    /// Up to two buttons: Featured Actions under the iOS 27 poster, and links under the pass in Google Wallet
+    public let featuredActions: [String]
+    /// How the logo sits on Google Wallet: 'round' (the square icon in a circle, with the store name) or 'wide' (the logo in place of the circle and store name)
+    public let googleLogoStyle: String
+    public let googleWallet: GetCardsResponseGoogleWallet
     /// Optional header text displayed on the card
     public let headerText: String
     /// Unique card ID
@@ -59,12 +66,16 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        applePassStyle: String,
         archivedAt: String,
         auxiliaryFields: [String],
         cardColor: String,
         createdAt: String,
         customerCardsCount: Int,
         expiresAt: String,
+        featuredActions: [String],
+        googleLogoStyle: String,
+        googleWallet: GetCardsResponseGoogleWallet,
         headerText: String,
         id: Int,
         initialStamps: Int,
@@ -88,12 +99,16 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
         updatedAt: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.applePassStyle = applePassStyle
         self.archivedAt = archivedAt
         self.auxiliaryFields = auxiliaryFields
         self.cardColor = cardColor
         self.createdAt = createdAt
         self.customerCardsCount = customerCardsCount
         self.expiresAt = expiresAt
+        self.featuredActions = featuredActions
+        self.googleLogoStyle = googleLogoStyle
+        self.googleWallet = googleWallet
         self.headerText = headerText
         self.id = id
         self.initialStamps = initialStamps
@@ -120,12 +135,16 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.applePassStyle = try container.decode(String.self, forKey: .applePassStyle)
         self.archivedAt = try container.decode(String.self, forKey: .archivedAt)
         self.auxiliaryFields = try container.decode([String].self, forKey: .auxiliaryFields)
         self.cardColor = try container.decode(String.self, forKey: .cardColor)
         self.createdAt = try container.decode(String.self, forKey: .createdAt)
         self.customerCardsCount = try container.decode(Int.self, forKey: .customerCardsCount)
         self.expiresAt = try container.decode(String.self, forKey: .expiresAt)
+        self.featuredActions = try container.decode([String].self, forKey: .featuredActions)
+        self.googleLogoStyle = try container.decode(String.self, forKey: .googleLogoStyle)
+        self.googleWallet = try container.decode(GetCardsResponseGoogleWallet.self, forKey: .googleWallet)
         self.headerText = try container.decode(String.self, forKey: .headerText)
         self.id = try container.decode(Int.self, forKey: .id)
         self.initialStamps = try container.decode(Int.self, forKey: .initialStamps)
@@ -153,12 +172,16 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encode(self.applePassStyle, forKey: .applePassStyle)
         try container.encode(self.archivedAt, forKey: .archivedAt)
         try container.encode(self.auxiliaryFields, forKey: .auxiliaryFields)
         try container.encode(self.cardColor, forKey: .cardColor)
         try container.encode(self.createdAt, forKey: .createdAt)
         try container.encode(self.customerCardsCount, forKey: .customerCardsCount)
         try container.encode(self.expiresAt, forKey: .expiresAt)
+        try container.encode(self.featuredActions, forKey: .featuredActions)
+        try container.encode(self.googleLogoStyle, forKey: .googleLogoStyle)
+        try container.encode(self.googleWallet, forKey: .googleWallet)
         try container.encode(self.headerText, forKey: .headerText)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.initialStamps, forKey: .initialStamps)
@@ -184,12 +207,16 @@ public struct GetCardsResponse: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case applePassStyle = "apple_pass_style"
         case archivedAt = "archived_at"
         case auxiliaryFields = "auxiliary_fields"
         case cardColor = "card_color"
         case createdAt = "created_at"
         case customerCardsCount = "customer_cards_count"
         case expiresAt = "expires_at"
+        case featuredActions = "featured_actions"
+        case googleLogoStyle = "google_logo_style"
+        case googleWallet = "google_wallet"
         case headerText = "header_text"
         case id
         case initialStamps = "initial_stamps"

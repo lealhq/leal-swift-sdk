@@ -10,6 +10,7 @@ import Leal
                 #"""
                 [
                   {
+                    "apple_pass_style": "apple_pass_style",
                     "archived_at": "archived_at",
                     "auxiliary_fields": [
                       "auxiliary_fields"
@@ -18,6 +19,17 @@ import Leal
                     "created_at": "created_at",
                     "customer_cards_count": 1,
                     "expires_at": "expires_at",
+                    "featured_actions": [
+                      "featured_actions"
+                    ],
+                    "google_logo_style": "google_logo_style",
+                    "google_wallet": {
+                      "hero_image": "hero_image",
+                      "text_color": "text_color",
+                      "warnings": [
+                        "warnings"
+                      ]
+                    },
                     "header_text": "header_text",
                     "id": 1,
                     "initial_stamps": 1,
@@ -51,6 +63,7 @@ import Leal
         )
         let expectedResponse = [
             ListCardsResponseItem(
+                applePassStyle: "apple_pass_style",
                 archivedAt: "archived_at",
                 auxiliaryFields: [
                     "auxiliary_fields"
@@ -59,6 +72,17 @@ import Leal
                 createdAt: "created_at",
                 customerCardsCount: 1,
                 expiresAt: "expires_at",
+                featuredActions: [
+                    "featured_actions"
+                ],
+                googleLogoStyle: "google_logo_style",
+                googleWallet: ListCardsResponseItemGoogleWallet(
+                    heroImage: "hero_image",
+                    textColor: "text_color",
+                    warnings: [
+                        "warnings"
+                    ]
+                ),
                 headerText: "header_text",
                 id: 1,
                 initialStamps: 1,
@@ -95,6 +119,7 @@ import Leal
             body: Foundation.Data(
                 #"""
                 {
+                  "apple_pass_style": "apple_pass_style",
                   "archived_at": "archived_at",
                   "auxiliary_fields": [
                     "auxiliary_fields"
@@ -103,6 +128,17 @@ import Leal
                   "created_at": "created_at",
                   "customer_cards_count": 1,
                   "expires_at": "expires_at",
+                  "featured_actions": [
+                    "featured_actions"
+                  ],
+                  "google_logo_style": "google_logo_style",
+                  "google_wallet": {
+                    "hero_image": "hero_image",
+                    "text_color": "text_color",
+                    "warnings": [
+                      "warnings"
+                    ]
+                  },
                   "header_text": "header_text",
                   "id": 1,
                   "initial_stamps": 1,
@@ -134,6 +170,7 @@ import Leal
             urlSession: stub.urlSession
         )
         let expectedResponse = CreateCardsResponse(
+            applePassStyle: "apple_pass_style",
             archivedAt: "archived_at",
             auxiliaryFields: [
                 "auxiliary_fields"
@@ -142,6 +179,17 @@ import Leal
             createdAt: "created_at",
             customerCardsCount: 1,
             expiresAt: "expires_at",
+            featuredActions: [
+                "featured_actions"
+            ],
+            googleLogoStyle: "google_logo_style",
+            googleWallet: CreateCardsResponseGoogleWallet(
+                heroImage: "hero_image",
+                textColor: "text_color",
+                warnings: [
+                    "warnings"
+                ]
+            ),
             headerText: "header_text",
             id: 1,
             initialStamps: 1,
@@ -180,6 +228,7 @@ import Leal
             body: Foundation.Data(
                 #"""
                 {
+                  "apple_pass_style": "apple_pass_style",
                   "archived_at": "archived_at",
                   "auxiliary_fields": [
                     "auxiliary_fields"
@@ -188,6 +237,17 @@ import Leal
                   "created_at": "created_at",
                   "customer_cards_count": 1,
                   "expires_at": "expires_at",
+                  "featured_actions": [
+                    "featured_actions"
+                  ],
+                  "google_logo_style": "google_logo_style",
+                  "google_wallet": {
+                    "hero_image": "hero_image",
+                    "text_color": "text_color",
+                    "warnings": [
+                      "warnings"
+                    ]
+                  },
                   "header_text": "header_text",
                   "id": 1,
                   "initial_stamps": 1,
@@ -219,6 +279,7 @@ import Leal
             urlSession: stub.urlSession
         )
         let expectedResponse = GetCardsResponse(
+            applePassStyle: "apple_pass_style",
             archivedAt: "archived_at",
             auxiliaryFields: [
                 "auxiliary_fields"
@@ -227,6 +288,17 @@ import Leal
             createdAt: "created_at",
             customerCardsCount: 1,
             expiresAt: "expires_at",
+            featuredActions: [
+                "featured_actions"
+            ],
+            googleLogoStyle: "google_logo_style",
+            googleWallet: GetCardsResponseGoogleWallet(
+                heroImage: "hero_image",
+                textColor: "text_color",
+                warnings: [
+                    "warnings"
+                ]
+            ),
             headerText: "header_text",
             id: 1,
             initialStamps: 1,
@@ -263,6 +335,7 @@ import Leal
             body: Foundation.Data(
                 #"""
                 {
+                  "apple_pass_style": "apple_pass_style",
                   "archived_at": "archived_at",
                   "auxiliary_fields": [
                     "auxiliary_fields"
@@ -271,6 +344,17 @@ import Leal
                   "created_at": "created_at",
                   "customer_cards_count": 1,
                   "expires_at": "expires_at",
+                  "featured_actions": [
+                    "featured_actions"
+                  ],
+                  "google_logo_style": "google_logo_style",
+                  "google_wallet": {
+                    "hero_image": "hero_image",
+                    "text_color": "text_color",
+                    "warnings": [
+                      "warnings"
+                    ]
+                  },
                   "header_text": "header_text",
                   "id": 1,
                   "initial_stamps": 1,
@@ -302,6 +386,7 @@ import Leal
             urlSession: stub.urlSession
         )
         let expectedResponse = UpdateCardsResponse(
+            applePassStyle: "apple_pass_style",
             archivedAt: "archived_at",
             auxiliaryFields: [
                 "auxiliary_fields"
@@ -310,6 +395,17 @@ import Leal
             createdAt: "created_at",
             customerCardsCount: 1,
             expiresAt: "expires_at",
+            featuredActions: [
+                "featured_actions"
+            ],
+            googleLogoStyle: "google_logo_style",
+            googleWallet: UpdateCardsResponseGoogleWallet(
+                heroImage: "hero_image",
+                textColor: "text_color",
+                warnings: [
+                    "warnings"
+                ]
+            ),
             headerText: "header_text",
             id: 1,
             initialStamps: 1,
